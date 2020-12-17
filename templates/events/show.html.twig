@@ -1,0 +1,29 @@
+{% extends 'layouts/base.html.twig'%}
+
+{% block title event.name %}
+
+ {% block body %}
+ <div class="row">
+    <div class="col-md-6 mx-auto">
+       <h1 class="mt-5 font-weight-light">{{ event.name }}</h1>
+       <h2 class="h4">{{ format_price(event) }}</h2>
+       <h3 class="h5 font-weight-light">{{ event.startsAt|datetime }} in {{ event.location }} </h3>
+       <p>{{ event.description }}</p>
+
+       <p> 
+          <a href="{{ path('events.edit',{'id': event.id}) }}">Edit</a> |
+          <a href="{{ path('events.delete',{'id': event.id}) }}" onclick ="
+          event.preventDefault(); confirm('Are you sure?') && 
+          document.getElementById('js-delete-event-form').submit();">Delete</a>
+       </p>
+
+      <form id="js-delete-event-form" action="{{ path('events.delete',{'id':event.id}) }}" method="post" style="display:none;"> 
+        <input type="hidden" name="_token" value="{{ csrf_token('delete')}}"/>
+        <input type="hidden" name="_method" value="DELETE"/>
+      </form>
+
+    </div>
+ </div>
+
+
+ {% endblock %}

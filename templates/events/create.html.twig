@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html.twig'%}
+
+{% block title 'Create New Event' %}
+
+ {% block body %}
+ <div class="row">
+    <div class="col-md-6 mx-auto">
+       <h1 class="mt-5 h2 font-weight-light">Create New Event</h1>
+
+       {{ include('events/_form.html.twig', {'submitButtonText': 'Create Event'}) }}
+
+    </div>
+ </div>
+
+
+ {% endblock %}
